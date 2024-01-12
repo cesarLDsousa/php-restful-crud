@@ -2,8 +2,8 @@
 
 namespace App\Core;
 
-class Router {
-
+class Router
+{
     private $controller;
 
     private $method;
@@ -12,7 +12,8 @@ class Router {
 
     private $params = [];
 
-    function __construct() {
+    public function __construct()
+    {
 
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
@@ -36,7 +37,7 @@ class Router {
 
         require_once "../App/Controllers/" .  ucfirst($this->controller) . ".php";
 
-        $this->controller = new $this->controller;
+        $this->controller = new $this->controller();
 
         $this->method = $_SERVER["REQUEST_METHOD"];
 
@@ -84,9 +85,10 @@ class Router {
         call_user_func_array([$this->controller, $this->controllerMethod], $this->params);
     }
 
-    private function parseURL() {
-        
+    private function parseURL()
+    {
+
         $url = explode("?", $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"])[0];
-        return explode("/",$url);
+        return explode("/", $url);
     }
 }
