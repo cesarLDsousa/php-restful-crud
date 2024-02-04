@@ -13,7 +13,7 @@ class Model
         $password = $_ENV["database_pass"];
 
         if(!isset(self::$connection)){
-            self::$connection = new \PDO("mysql:host=$host;port=3306;dbname=dbfastparking;", $user, $password);
+            self::$connection = new \PDO("mysql:host={$host};port=3306;dbname=dbfastparking;", $user, $password);
         }
 
         return self::$connection;

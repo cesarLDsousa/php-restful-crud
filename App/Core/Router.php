@@ -14,7 +14,6 @@ class Router
 
     public function __construct()
     {
-
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
         header("Access-Control-Allow-Headers: Content-Type");
@@ -24,7 +23,6 @@ class Router
         header("Content-type: application/json");
 
         if (file_exists("../App/Controllers/" . ucfirst($url[1]) . ".php")) {
-
             $this->controller = $url[1];
             unset($url[1]);
         } elseif (empty($url[1])) {
@@ -50,11 +48,9 @@ class Router
                     $this->controllerMethod = "index";
                 }
                 break;
-
             case "POST":
                 $this->controllerMethod = "store";
                 break;
-
             case "PUT":
                 $this->controllerMethod = "update";
                 if (isset($url[2]) && is_numeric($url[2])) {
@@ -65,7 +61,6 @@ class Router
                     exit;
                 }
                 break;
-
             case "DELETE":
                 $this->controllerMethod = "delete";
                 if (isset($url[2]) && is_numeric($url[2])) {
@@ -76,7 +71,6 @@ class Router
                     exit;
                 }
                 break;
-
             default:
                 echo "Método não suportado";
                 exit;
@@ -87,7 +81,6 @@ class Router
 
     private function parseURL()
     {
-
         $url = explode("?", $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"])[0];
         return explode("/", $url);
     }
