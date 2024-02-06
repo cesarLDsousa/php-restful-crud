@@ -22,19 +22,20 @@ class Router
 
         header("Content-type: application/json");
 
-        if (file_exists("../App/Controllers/" . ucfirst($url[1]) . ".php")) {
+        if (file_exists("../App/Controllers/" . ucfirst($url[1]) . "Controller.php")) {
             $this->controller = $url[1];
             unset($url[1]);
         } elseif (empty($url[1])) {
-            $this->controller = "clientes";
+            $this->controller = "test";
         } else {
             http_response_code(404);
             echo json_encode(["erro" => "Recurso não suportado"]);
             exit;
         }
 
-        require_once "../App/Controllers/" .  ucfirst($this->controller) . ".php";
+        require_once "../App/Controllers/" .  ucfirst($this->controller) . "Controller.php";
 
+        $this->controller .= "Controller"; 
         $this->controller = new $this->controller();
 
         $this->method = $_SERVER["REQUEST_METHOD"];
