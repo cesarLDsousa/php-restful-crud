@@ -29,7 +29,7 @@ class Router
             $this->controller = "test";
         } else {
             http_response_code(404);
-            echo json_encode(["erro" => "Recurso não suportado"]);
+            echo json_encode(["error" => "Resource not supported"]);
             exit;
         }
 
@@ -58,7 +58,7 @@ class Router
                     $this->params = [$url[2]];
                 } else {
                     http_response_code(400);
-                    echo json_encode(["erro" => "É necessário informar um id"]);
+                    echo json_encode(["error" => "An id must be provided"]);
                     exit;
                 }
                 break;
@@ -68,12 +68,12 @@ class Router
                     $this->params = [$url[2]];
                 } else {
                     http_response_code(400);
-                    echo json_encode(["erro" => "É necessário informar um id"]);
+                    echo json_encode(["error" => "An id must be provided"]);
                     exit;
                 }
                 break;
             default:
-                echo "Método não suportado";
+                echo "Method not supported";
                 exit;
         }
 
