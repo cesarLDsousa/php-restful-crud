@@ -1,3 +1,5 @@
 <?php
 
-echo 'Hello World!';
+require("../vendor/autoload.php");
+
+$router = new \App\Core\Router();
