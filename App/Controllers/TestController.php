@@ -1,9 +1,17 @@
 <?php 
 
-class TestController 
+declare(strict_types=1);
+
+namespace App\Controllers;
+
+use App\Core\BaseController;
+
+class TestController Extends BaseController
 {
     public function index()
     {
-        echo 'Test';
+        $model = $this->model('Test');
+        $data = $model->all();
+        echo json_encode($data);
     }
 }

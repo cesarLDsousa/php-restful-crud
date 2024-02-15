@@ -26,17 +26,18 @@ class Router
             $this->controller = $url[1];
             unset($url[1]);
         } elseif (empty($url[1])) {
-            $this->controller = "test";
+            $this->controller = "Test";
         } else {
             http_response_code(404);
             echo json_encode(["error" => "Resource not supported"]);
             exit;
         }
 
-        require_once "../App/Controllers/" .  ucfirst($this->controller) . "Controller.php";
+        $file = "../App/Controllers/" .  ucfirst($this->controller) . "Controller.php";
+        require_once $file;
 
-        $this->controller .= "Controller"; 
-        $this->controller = new $this->controller();
+        $controllerClass = "App\\Controllers\\" . $this->controller . "Controller";
+        $this->controller = new $controllerClass();
 
         $this->method = $_SERVER["REQUEST_METHOD"];
 
